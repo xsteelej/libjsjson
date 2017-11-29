@@ -1,5 +1,5 @@
 add_library(Catch INTERFACE)
-target_include_directories(Catch INTERFACE .)
+target_include_directories(Catch INTERFACE /catch)
 
 file(GLOB_RECURSE SOURCES *.cpp)
 add_executable(test_libjsjson ${SOURCES})

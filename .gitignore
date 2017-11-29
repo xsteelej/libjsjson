@@ -1,3 +1,10 @@
+# bin and build folders
+bin/
+build/
+
+# VIM .swp files
+*.swp
+
 # Prerequisites
 *.d
 
