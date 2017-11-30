@@ -8,7 +8,7 @@
 
 using jsonObjectPtr = std::unique_ptr<jsonObject>;
 using jsonDictionaryPtr = std::unique_ptr<jsonDictionaryType>;
-using jsonArrayPtr = std::unique_ptr<jsonArrayType>;
+using jsonVectorPtr = std::unique_ptr<jsonArrayType>;
 
 TEST_CASE("Test the creation of a json Dictionary object", "[json_object_creation_dictionary]") {
 	jsonDictionaryPtr jsonMap (new jsonDictionaryType());
@@ -23,6 +23,9 @@ TEST_CASE("Test the creation of a json Dictionary object", "[json_object_creatio
 }
 
 TEST_CASE("Test the creation of a json Array object", "[json_object_creation_array]") {
-	auto outputJSON = "[]";
-	REQUIRE(outputJSON == "{}");
+	jsonVectorPtr jsonVector (new jsonArrayType());
+	jsonVector->push_back(jsonObjectPtr(new jsonString("A")));
+	jsonVector->push_back(jsonObjectPtr(new jsonNumber(200)));
+	jsonArray jsonArr(std::move(jsonVector));
+	REQUIRE(jsonArr.toJsonString() == "[\"A\",200]");
 }
