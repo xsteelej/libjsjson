@@ -1,2 +1,2 @@
 file(GLOB_RECURSE SOURCES *.cpp)
-add_library(libjsjson ${SOURCES})
+add_library(jsjson ${SOURCES})

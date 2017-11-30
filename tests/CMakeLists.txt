@@ -6,7 +6,7 @@ add_executable(test_libjsjson ${SOURCES})
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
-target_link_libraries (test_libjsjson LINK_PUBLIC libjsjson Catch)
+target_link_libraries (test_libjsjson LINK_PUBLIC jsjson Catch)
 
 set(testCommand ${PROJECT_SOURCE_DIR}/bin/test_libjsjson)
 
