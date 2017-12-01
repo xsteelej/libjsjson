@@ -26,14 +26,14 @@
 
 namespace jsjson {
 
-static const std::string genericParserError = "Error Parsing, invalid JSON";
-static const std::string unexpectedCharactersAfterComma = "Error Parsing, unexpected characters after a comma";
-static const std::string dictionaryKeyQuoteError = "Error parsing dictionary, expecting a quote";
-static const std::string keyParsingColonNotFoundError = "Error parsing key, expected a \":\"";
-static const std::string keyParsingFirstQuoteNotFoundError = "Error parsing key, first quote not found!";
-static const std::string keyParsingFinalQuoteNotFoundError = "Error parsing key, final quote not found!";
-static const std::string unexpectedTerminatingCharacterError  = "Error parsing, expecting characters \",\",\"]\" or \"}\"";
-static const std::string booleanParsingError = "Error parsing boolean, expecting true or false";
+const std::string genericParserError = "Error Parsing, invalid JSON";
+const std::string unexpectedCharactersAfterComma = "Error Parsing, unexpected characters after a comma";
+const std::string dictionaryKeyQuoteError = "Error parsing dictionary, expecting a quote";
+const std::string keyParsingColonNotFoundError = "Error parsing key, expected a \":\"";
+const std::string keyParsingFirstQuoteNotFoundError = "Error parsing key, first quote not found!";
+const std::string keyParsingFinalQuoteNotFoundError = "Error parsing key, final quote not found!";
+const std::string unexpectedTerminatingCharacterError  = "Error parsing, expecting characters \",\",\"]\" or \"}\"";
+const std::string booleanParsingError = "Error parsing boolean, expecting true or false";
 
 ///parseData
 std::unique_ptr<jsonObject> jsonSerialisation::parseData(const std::string& jsonString, std::string::size_type& fromIndex) {

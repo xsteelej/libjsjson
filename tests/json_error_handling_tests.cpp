@@ -11,6 +11,6 @@ TEST_CASE("Test that garbage in throws an exception","[error_handling_garbage]")
 		thrownErrorString = std::string(e.what());
 	}
 
-	REQUIRE(thrownErrorString == "Error Parsing, invalid JSON");
+	REQUIRE(thrownErrorString == jsjson::genericParserError);
 
 }
