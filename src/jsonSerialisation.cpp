@@ -26,15 +26,11 @@
 
 ///parseData
 std::unique_ptr<jsonObject> jsonSerialisation::parseData(const std::string& jsonString, std::string::size_type& fromIndex) {
-	
 	std::unique_ptr<jsonObject> jsonObject = nullptr;
 
 	while (fromIndex < jsonString.size() && jsonObject == nullptr) {
-
 		const auto& chr = jsonString[fromIndex];
-
 		auto type = (isdigit(chr)) ? '0' : chr;
-
 		switch (type) {
 			case '0':
 				jsonObject = parseNumber(jsonString, fromIndex);
@@ -58,13 +54,11 @@ std::unique_ptr<jsonObject> jsonSerialisation::parseData(const std::string& json
 				break;
 		}
 	}
-
 	return jsonObject;
 }
 
 ///parse
 std::unique_ptr<jsonObject> jsonSerialisation::parse(const std::string& jsonString) {
-
 	auto stringIdx = std::string::size_type(0);
 	auto topLevelObject = parseData(jsonString, stringIdx);
 	while (stringIdx++ < jsonString.size()) {
@@ -76,12 +70,10 @@ std::unique_ptr<jsonObject> jsonSerialisation::parse(const std::string& jsonStri
 
 ///parseDictionary
 std::unique_ptr<jsonObject> jsonSerialisation::parseDictionary(const std::string& jsonString, std::string::size_type& index) {
-
 	if (jsonString[index] != '{') { throw jsonSerialisationException("Error parsing dictionary, expected a \"{\""); }
 	std::shared_ptr<jsonDictionaryType> dictionary(new jsonDictionaryType());
 
 	index++;
-
 	while (index < jsonString.size()) {
 		const auto &chr = jsonString[index];
 		if (chr == '}') { break; }
@@ -97,7 +89,6 @@ std::unique_ptr<jsonObject> jsonSerialisation::parseDictionary(const std::string
 			error << "Error parsing dictionary, expecting a quote but found a \"" << chr << "\"";
 			throw jsonSerialisationException(error.str());
 		}
-
 	}		
 
 	std::unique_ptr<jsonDictionary> jdPtr(new jsonDictionary(std::move(dictionary)));
@@ -106,7 +97,6 @@ std::unique_ptr<jsonObject> jsonSerialisation::parseDictionary(const std::string
 
 ///parseKey
 std::unique_ptr<std::string> jsonSerialisation::parseKey(const std::string& jsonString, std::string::size_type& index) {
-
 	const auto colonPos = jsonString.find(':', index);
 	const auto finalQuote = jsonString.rfind('\"',colonPos);
 	const auto firstQuote = index;//jsonString.find("\"", index);
@@ -123,20 +113,17 @@ std::unique_ptr<std::string> jsonSerialisation::parseKey(const std::string& json
 
 ///advanceToNextElement
 void jsonSerialisation::advanceToNextElement(const std::string& jsonString, std::string::size_type& index, const char endChar) {
-
 	bool foundComma = false;
 	std::ostringstream error;
 
 	while (index < jsonString.size()) {
 		const auto& chr = jsonString[index];
-
 		if (foundComma) {
 			if (chr == ',' || chr == endChar) {
 				error << "Error, found a \"" << chr << "\" after a comma";
 				throw jsonSerialisationException(error.str());
 			}
 			else if (!isspace(chr)) { break; }
-		
 		}
 		else {
 			if (chr == ',') { foundComma = true; } 
@@ -146,14 +133,12 @@ void jsonSerialisation::advanceToNextElement(const std::string& jsonString, std:
 				throw jsonSerialisationException(error.str());
 			}
 		}
-
 		index++;
 	}
 }
 
 ///parseArray
 std::unique_ptr<jsonObject> jsonSerialisation::parseArray(const std::string& jsonString, std::string::size_type& index) {
-
 	if (jsonString[index] != '[') { throw jsonSerialisationException("Error parsing array, expected a \"[\""); }
 	std::unique_ptr<jsonArrayType>vectorPtr(new jsonArrayType());
 
@@ -173,7 +158,6 @@ std::unique_ptr<jsonObject> jsonSerialisation::parseArray(const std::string& jso
 
 ///parseString
 std::unique_ptr<jsonObject> jsonSerialisation::parseString(const std::string& jString, std::string::size_type& index) {
-	
 	std::string str;
 
 	bool escapeChar = false;
@@ -191,7 +175,6 @@ std::unique_ptr<jsonObject> jsonSerialisation::parseString(const std::string& jS
 
 ///parseNumber
 std::unique_ptr<jsonObject> jsonSerialisation::parseNumber(const std::string& jsonString, std::string::size_type& index) {
-
 	std::string numberString;
 
 	while(index < jsonString.size()) {
@@ -206,7 +189,6 @@ std::unique_ptr<jsonObject> jsonSerialisation::parseNumber(const std::string& js
 
 ///parseBoolean
 std::unique_ptr<jsonObject> jsonSerialisation::parseBoolean(const std::string& jsonString, std::string::size_type& index) {
-
 	std::string booleanString;
 
 	while(index < jsonString.size()) {
@@ -215,8 +197,6 @@ std::unique_ptr<jsonObject> jsonSerialisation::parseBoolean(const std::string& j
 		booleanString+=chr;
 		index++;
 	}
-
 	if (booleanString != "true" && booleanString != "false") {throw jsonSerialisationException("Error parsing boolean, expecting true or false"); }
-
 	return std::unique_ptr<jsonObject>(new jsonBoolean(booleanString == "true"));
 }

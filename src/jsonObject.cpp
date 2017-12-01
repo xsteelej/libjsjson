@@ -66,7 +66,6 @@ std::string jsonDictionary::toJsonString() {
 	auto size = dictionary->size();
 	auto count = 0;
 
-	
 	jsonString+="{";
 	for (auto const &item : (*dictionary)) {
 		count++;

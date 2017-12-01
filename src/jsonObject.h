@@ -31,128 +31,80 @@ enum jsonType : std::int8_t {ARRAY,DICTIONARY,NUMBER,BOOLEAN,STRING};
 
 /// jsonObject - base class for all jsonObjects, not intended for instatiation
 class jsonObject {
-
 public:
 	jsonObject(){}
-	
 	virtual ~jsonObject() {}
-	
 	jsonType getType();
-	
 	virtual	std::string toJsonString();
-
 protected:
 	jsonObject(jsonType t) : type(t) {}
-
 	jsonType type;
 };
 
-
 /// jsonArray
-
 using jsonArrayType = std::vector<std::unique_ptr<jsonObject>>;
 
 class jsonArray : public jsonObject {
-
 public:
 	jsonArray() : jsonObject(ARRAY) {}
-
 	jsonArray(std::shared_ptr<jsonArrayType> aJsonArray) : jsonArray() { array = aJsonArray; }
-
 	virtual ~jsonArray() {}
-
 	virtual std::string toJsonString();
-
 	void setArray(std::unique_ptr<jsonArrayType>);
-
 private:
 	std::shared_ptr<jsonArrayType> array;
 };
 
-
 /// jsonDictionary
-
 using jsonDictionaryType = std::map<std::string, std::unique_ptr<jsonObject>>;
 
 class jsonDictionary : public jsonObject {
-
 public:
 	jsonDictionary() : jsonObject(DICTIONARY){}
-
 	jsonDictionary(std::shared_ptr<jsonDictionaryType> aJsonDictionary) : jsonDictionary() { dictionary = aJsonDictionary; }
-	
 	virtual ~jsonDictionary() {}
-
 	virtual std::string toJsonString();
-
 	inline void setDictionary(std::shared_ptr<jsonDictionaryType> jd) { dictionary = jd; }
-
 	inline std::shared_ptr<jsonDictionaryType> getDictionary() { return dictionary; }
-
 private:
 	std::shared_ptr<jsonDictionaryType> dictionary;
 };
 
 /// jsonNumber
-
 class jsonNumber : public jsonObject {
-
 public:
 	jsonNumber() : jsonObject(NUMBER){}
-
 	jsonNumber(double aNumber) : jsonNumber() { number = aNumber; }
-
 	virtual ~jsonNumber() {}	
-
 	virtual std::string toJsonString();
-
 	inline void setNumber(double aFloat) { number = aFloat; }
-	
 	inline double getNumber() { return number; }
-
 private:
 	double number;
 };
 
 /// jsonString
-
 class jsonString : public jsonObject {
-
 public:
 	jsonString() : jsonObject(STRING){}
-	
 	jsonString(std::string aString) : jsonString() { stringValue = aString; }
-	
 	virtual ~jsonString() {}
-
 	virtual std::string toJsonString();
-
 	inline void setString(std::string aString) { stringValue = aString; }
-	
 	inline std::string getString() { return stringValue; }
-
 private:
 	std::string stringValue;
 };
 
-
 /// jsonBoolean
-
 class jsonBoolean : public jsonObject {
-
 public:
 	jsonBoolean() : jsonObject(BOOLEAN) {}
-	
 	jsonBoolean(bool aBool) : jsonBoolean() { boolean = aBool; }
-
 	virtual ~jsonBoolean() {}
-
 	virtual std::string toJsonString();
-
 	inline void setBoolean(bool aBoolean) { boolean = aBoolean; }
-	
 	inline bool getBoolean() { return boolean; }
-
 private:
 	bool boolean;
 };

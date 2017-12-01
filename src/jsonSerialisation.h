@@ -26,15 +26,12 @@
 #include <string>
 #include <exception>
 
-
 /// jsonSerialisation - parse JSON formatted strings and create, returning a top level jsonObject
 class jsonSerialisation {
-
 public:
 	/// parse - taking a JSON formatted string, create jsonObject's 
 	/// @param jsonString - string representation of the JSON to be parsed.
 	static std::unique_ptr<jsonObject> parse(const std::string& jsonString);
-
 private:
 	static std::unique_ptr<jsonObject> parseData(const std::string&, std::string::size_type&);
 	static std::unique_ptr<jsonObject> parseDictionary(const std::string&, std::string::size_type&);
@@ -45,7 +42,6 @@ private:
 	static std::unique_ptr<std::string> parseKey(const std::string&, std::string::size_type&); 
 	static void advanceToNextElement(const std::string&, std::string::size_type&, const char);
 };
-
 
 /// jsonSerialisationException - used to signal that the parser has found invalid JSON whilst parsing. 
 class jsonSerialisationException : public std::exception {
