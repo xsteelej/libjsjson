@@ -24,3 +24,5 @@ add_test(NAME top_level_object_dictionary+array COMMAND ${testCommand} [top_leve
 add_test(NAME json_object_creation_dictionary COMMAND ${testCommand} [json_object_creation_dictionary])
 add_test(NAME json_object_creation_array COMMAND ${testCommand} [json_object_creation_array])
 
+#JSON error handling tests
+add_test(NAME error_handling_garbage COMMAND ${testCommand} [error_handling_garbage])
