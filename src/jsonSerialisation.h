@@ -26,6 +26,8 @@
 #include <string>
 #include <exception>
 
+namespace jsjson {
+
 /// jsonSerialisation - parse JSON formatted strings and create, returning a top level jsonObject
 class jsonSerialisation {
 public:
@@ -51,5 +53,7 @@ public:
 private:
 	std::string exceptionMessage;
 };
+
+}
 
 #endif

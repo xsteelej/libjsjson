@@ -24,6 +24,8 @@
 #include <ctype.h>
 #include <sstream>
 
+namespace jsjson {
+
 ///parseData
 std::unique_ptr<jsonObject> jsonSerialisation::parseData(const std::string& jsonString, std::string::size_type& fromIndex) {
 	std::unique_ptr<jsonObject> jsonObject = nullptr;
@@ -199,4 +201,6 @@ std::unique_ptr<jsonObject> jsonSerialisation::parseBoolean(const std::string& j
 	}
 	if (booleanString != "true" && booleanString != "false") {throw jsonSerialisationException("Error parsing boolean, expecting true or false"); }
 	return std::unique_ptr<jsonObject>(new jsonBoolean(booleanString == "true"));
+}
+
 }

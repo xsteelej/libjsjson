@@ -26,6 +26,8 @@
 #include <map>
 #include <vector>
 
+namespace jsjson {
+
 /// jsonType - defines the various types of JSON objects
 enum jsonType : std::int8_t {ARRAY,DICTIONARY,NUMBER,BOOLEAN,STRING};
 
@@ -108,5 +110,6 @@ public:
 private:
 	bool boolean;
 };
+} // Namespace
 
 #endif

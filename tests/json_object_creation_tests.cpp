@@ -6,6 +6,7 @@
 #include <vector>
 #include "jsonSerialisation.h"
 
+using namespace jsjson;
 using jsonObjectPtr = std::unique_ptr<jsonObject>;
 using jsonDictionaryPtr = std::unique_ptr<jsonDictionaryType>;
 using jsonVectorPtr = std::unique_ptr<jsonArrayType>;

@@ -2,6 +2,8 @@
 #include <string>
 #include "jsonSerialisation.h"
 
+using namespace jsjson;
+
 TEST_CASE("Tests a very basic Top level Object of an Empty Dictionary", "[top_level_object_empty_dictionary]") {
 	auto parsedJson = jsonSerialisation::parse("{}");
 	auto outputJSON = parsedJson->toJsonString();

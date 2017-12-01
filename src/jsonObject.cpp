@@ -23,10 +23,12 @@
 #include <sstream>
 #include <iomanip>
 
+namespace jsjson {
+
 /// jsonObject::getType
 ///
 /// @return jsonType - the type of the JSON Object
-jsonType jsonObject::getType() {
+jsjson::jsonType jsonObject::getType() {
 	return type;
 }
 
@@ -98,4 +100,6 @@ std::string jsonBoolean::toJsonString() {
 /// @return JSON representation string of a jsonString
 std::string jsonString::toJsonString() {
 	return std::string("\"" + stringValue + "\"");
+}
+
 }
