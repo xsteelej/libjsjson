@@ -36,8 +36,6 @@ extern const std::string keyParsingFirstQuoteNotFoundError;
 extern const std::string keyParsingFinalQuoteNotFoundError;
 extern const std::string unexpectedTerminatingCharacterError;
 extern const std::string booleanParsingError;
- 
-
 
 /// jsonSerialisation - parse JSON formatted strings and create, returning a top level jsonObject
 class jsonSerialisation {

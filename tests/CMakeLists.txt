@@ -26,3 +26,9 @@ add_test(NAME json_object_creation_array COMMAND ${testCommand} [json_object_cre
 
 #JSON error handling tests
 add_test(NAME error_handling_garbage COMMAND ${testCommand} [error_handling_garbage])
+add_test(NAME error_handling_invalid_after_comma COMMAND ${testCommand} [error_handling_invalid_after_comma])
+add_test(NAME error_handling_no_colon_after_key COMMAND ${testCommand} [error_handling_no_colon_after_key] )
+add_test(NAME error_handling_no_quote_before_dictionary_key COMMAND ${testCommand} [error_handling_no_quote_before_dictionary_key])
+add_test(NAME error_handling_no_quote_after_dictionary_key COMMAND ${testCommand} [error_handling_no_quote_after_dictionary_key])
+add_test(NAME error_handling_invalid_chars_after_element COMMAND ${testCommand} [error_handling_invalid_chars_after_element] )
+add_test(NAME error_handling_invalid_boolean COMMAND ${testCommand} [error_handling_invalid_boolean] )

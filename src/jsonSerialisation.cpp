@@ -28,7 +28,6 @@ namespace jsjson {
 
 const std::string genericParserError = "Error Parsing, invalid JSON";
 const std::string unexpectedCharactersAfterComma = "Error Parsing, unexpected characters after a comma";
-const std::string dictionaryKeyQuoteError = "Error parsing dictionary, expecting a quote";
 const std::string keyParsingColonNotFoundError = "Error parsing key, expected a \":\"";
 const std::string keyParsingFirstQuoteNotFoundError = "Error parsing key, first quote not found!";
 const std::string keyParsingFinalQuoteNotFoundError = "Error parsing key, final quote not found!";
@@ -96,7 +95,7 @@ std::unique_ptr<jsonObject> jsonSerialisation::parseDictionary(const std::string
 		} 
 		else if (isspace(chr)) { index++; }
 		else {
-			throw jsonSerialisationException(dictionaryKeyQuoteError);
+			throw jsonSerialisationException(keyParsingFirstQuoteNotFoundError);
 		}
 	}		
 
@@ -108,10 +107,9 @@ std::unique_ptr<jsonObject> jsonSerialisation::parseDictionary(const std::string
 std::unique_ptr<std::string> jsonSerialisation::parseKey(const std::string& jsonString, std::string::size_type& index) {
 	const auto colonPos = jsonString.find(':', index);
 	const auto finalQuote = jsonString.rfind('\"',colonPos);
-	const auto firstQuote = index;//jsonString.find("\"", index);
+	const auto firstQuote = index;
 
 	if (colonPos == std::string::npos) { throw jsonSerialisationException(keyParsingColonNotFoundError); }
-	if (firstQuote == std::string::npos) { throw jsonSerialisationException(keyParsingFirstQuoteNotFoundError); }
 	if (finalQuote == std::string::npos || finalQuote == firstQuote) { throw jsonSerialisationException(keyParsingFinalQuoteNotFoundError); }
 
 	std::string key = jsonString.substr(firstQuote+1,finalQuote-firstQuote-1);
