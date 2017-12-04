@@ -3,6 +3,8 @@ A C++14 JSON Parser and Serializer
 
 To build:
 
+Install cmake 3.9.4 or above: https://cmake.org
+
 ```
 cd libjsjson
 mkdir build
