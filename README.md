@@ -3,7 +3,7 @@ A C++14 JSON Parser and Serializer
 
 ## To build (Mac OSX / Linux):
 
-Install cmake 3.9.4 or above: https://cmake.org
+Install cmake 3.9.0 or above: https://cmake.org
 
 Install a C++14 compiler:
 * Mac OSX - Apple LLVM version 9.0.0 (clang-900.0.37)
