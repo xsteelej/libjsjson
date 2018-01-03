@@ -4,7 +4,7 @@ target_include_directories(Catch INTERFACE catch)
 file(GLOB_RECURSE SOURCES *.cpp)
 add_executable(test_libjsjson ${SOURCES})
 
-include_directories(${PROJECT_SOURCE_DIR}/src)
+include_directories(../src)
 
 target_link_libraries (test_libjsjson LINK_PUBLIC jsjson Catch)
 
